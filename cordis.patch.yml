@@ -1,18 +1,13 @@
-# dsh-initiative 的加载行。
+# dsh-initiative 的加载行（这个文件属于包本身，随 dsh.profile.bundles 自动生效，不要手改）。
 #
-# ⚠ 默认 enabled=false：装上不会立刻开始说话。
-#    要真正启用，必须同时给出 enabled: true 与 sessionId。
+# 安装：dsh plugin --profile <名字> add <本包路径>
+#       → 包名被写进 profile 的 dsh.profile.bundles → 本文件自动插入下面这一行。
+# 启用：默认 enabled=false，**必须**在 **profile 的** cordis.patch.yml 用覆盖行打开：
+#   - id: initiative
+#     name: 'dsh-initiative'
+#     config:
+#       enabled: true
+#       sessionId: '目标会话 id'
 - insert:
     - id: initiative
       name: 'dsh-initiative'
-      # config:
-      #   enabled: true
-      #   sessionId: '在这里填目标会话 id'
-      #   intervalMinutes: 10      # 多久掷一次骰子
-      #   probability: 0.25        # 掷中的概率
-      #   idleMinutes: 20          # 距上次有人说话至少多久
-      #   minGapMinutes: 30        # 两次主动之间至少间隔
-      #   dailyCap: 6              # 每天最多主动几次（0 = 不限）
-      #   quietStartHour: 1        # 免打扰起（本地时间，含头不含尾）
-      #   quietEndHour: 8          # 免打扰止
-      #   promptText: '[主动搭话] 现在没人跟你说话。想说什么就自然起个话头；不想说就这轮什么都不做。'

@@ -33,16 +33,19 @@
 dsh plugin --profile <你的profile> add C:\src\dsh-initiative
 ```
 
-在 profile 的 `cordis.patch.yml` 里加：
+在 profile 的 `cordis.patch.yml` 里加**配置覆盖行**（不要再写 `insert`，见下）：
 
 ```yaml
-- insert:
-    - id: initiative
-      name: 'dsh-initiative'
-      config:
-        enabled: true
-        sessionId: '在这里填目标会话 id'
+- id: initiative
+  name: 'dsh-initiative'
+  config:
+    enabled: true
+    sessionId: '在这里填目标会话 id'
 ```
+
+> ⚠ **不要手写 `- insert:`**：`dsh plugin add` 会把包名写进 `dsh.profile.bundles`，
+> 被列为 bundle 的包其自带的 `cordis.patch.yml` 已经自动插好了这一行，
+> 再手写一遍会撞成重复 id（这是实机验证时踩到的）。
 
 > ⚠ **默认 `enabled: false`**：装上不会立刻开始说话。必须同时给 `enabled: true` 与 `sessionId` 才会启动 —— 这是故意的，免得你装完一转身它就开始自言自语。
 
